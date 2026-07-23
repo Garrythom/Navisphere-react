@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-wordmark: var(--font-bodoni-moda), ui-serif, Georgia, serif;
+
+  --color-navy: #0f172a;
+  --color-surface-dark: #1e293b;
+  --color-accent: #c9972e;
+  --color-cta: #e0a526;
+  --color-offwhite: #f8fafc;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  --color-status-received: #64748b;
+  --color-status-pickedup: #14b8a6;
+  --color-status-processing: #f59e0b;
+  --color-status-transit: #3b82f6;
+  --color-status-out: #6366f1;
+  --color-status-delivered: #10b981;
+  --color-status-delayed: #ef4444;
+
+  /* One step lighter than Tailwind's defaults, site-wide (matches the Django
+     build's design decision). The wordmark opts out via an arbitrary
+     font-[700] value instead of the font-bold utility. */
+  --font-weight-semibold: 500;
+  --font-weight-bold: 600;
+}
+
+body {
+  @apply bg-offwhite text-navy font-sans antialiased;
+}
+h1, h2, h3, h4 {
+  @apply font-heading;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-medium
+           transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-accent
+           bg-navy text-white hover:brightness-110;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-medium
+           transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-accent
+           bg-cta text-navy hover:brightness-105;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-medium
+           transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-accent
+           border border-border bg-white text-navy hover:bg-offwhite;
+  }
+  .card {
+    @apply rounded-xl border border-border bg-white p-6 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md;
+  }
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.animate-ken-burns {
+  animation: ken-burns 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes bg-crossfade {
+  0%, 27% { opacity: 1; }
+  33%, 94% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.bg-layer {
+  animation: bg-crossfade 7.5s infinite;
+}
+.bg-layer:nth-of-type(1) { animation-delay: 0s; }
+.bg-layer:nth-of-type(2) { animation-delay: 2.5s; }
+.bg-layer:nth-of-type(3) { animation-delay: 5s; }
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide-up {
+  animation: fade-slide-up 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns,
+  .animate-fade-slide-up,
+  .bg-layer {
+    animation: none !important;
+  }
+  .bg-layer:nth-of-type(1) { opacity: 1; }
+  .bg-layer:nth-of-type(2),
+  .bg-layer:nth-of-type(3) { opacity: 0; }
+}
