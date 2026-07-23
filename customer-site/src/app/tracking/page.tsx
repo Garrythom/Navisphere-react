@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Search, SearchX, AlertTriangle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { STATUS_META, formatDestination } from "@/lib/status";
+import { STATUS_META, formatDestination, formatDateTime } from "@/lib/status";
+import { TrackingHistory } from "@/components/TrackingHistory";
 
 export const metadata: Metadata = {
   title: "Track Your Order — Navisphere Logistics",
@@ -106,15 +107,7 @@ export default async function TrackingPage({
                   <div>
                     <p className="text-xs uppercase tracking-wide text-muted">Last Updated</p>
                     <p className="mt-1 text-sm font-medium text-navy">
-                      {lastUpdate
-                        ? new Date(lastUpdate).toLocaleString("en-US", {
-                            month: "short",
-                            day: "2-digit",
-                            year: "numeric",
-                            hour: "numeric",
-                            minute: "2-digit",
-                          })
-                        : "—"}
+                      {lastUpdate ? formatDateTime(lastUpdate) : "—"}
                     </p>
                   </div>
                   <div>
@@ -144,46 +137,12 @@ export default async function TrackingPage({
 
               <h2 className="mt-10 font-heading text-lg font-semibold text-navy">Tracking History</h2>
               <div className="relative mt-6">
-                {order.updates.length > 0 ? (
-                  <ul className="space-y-6">
-                    {order.updates.map((update, i) => {
-                      const updateMeta = STATUS_META[update.status];
-                      return (
-                        <li key={i} className="relative flex gap-4">
-                          <div
-                            className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white"
-                            style={{ backgroundColor: updateMeta.color }}
-                          >
-                            <updateMeta.icon className="h-4 w-4" />
-                          </div>
-                          <div className="flex-1 rounded-xl border border-border bg-white p-4 shadow-sm">
-                            <div className="flex flex-wrap items-center justify-between gap-2">
-                              <span
-                                className="badge rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                                style={{ backgroundColor: `${updateMeta.color}1a`, color: updateMeta.color }}
-                              >
-                                {updateMeta.label}
-                              </span>
-                              <time className="text-xs text-muted">
-                                {new Date(update.timestamp).toLocaleString("en-US", {
-                                  month: "short",
-                                  day: "2-digit",
-                                  year: "numeric",
-                                  hour: "numeric",
-                                  minute: "2-digit",
-                                })}
-                              </time>
-                            </div>
-                            <p className="mt-2 text-sm font-medium text-navy">{update.location}</p>
-                            {update.note && <p className="mt-1 text-sm text-muted">{update.note}</p>}
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-muted">No status updates yet — check back soon.</p>
-                )}
+                <TrackingHistory
+                  currentStatus={order.current_status}
+                  origin={order.origin}
+                  destination={formatDestination(order)}
+                  updates={order.updates}
+                />
               </div>
             </>
           )}

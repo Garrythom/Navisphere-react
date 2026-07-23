@@ -20,7 +20,27 @@ export const STATUS_META: Record<
   in_transit: { label: "Shipped / In Transit", color: "#3B82F6", icon: Truck },
   out_for_delivery: { label: "Out for Delivery", color: "#6366F1", icon: MapPin },
   delivered: { label: "Delivered", color: "#10B981", icon: CheckCircle2 },
-  delayed: { label: "Delayed / Issue", color: "#EF4444", icon: AlertTriangle },
+  delayed: { label: "On Hold / Delayed", color: "#EF4444", icon: AlertTriangle },
+};
+
+// The forward-moving shipment sequence. "delayed" is an exception state layered on
+// top of wherever the shipment last made forward progress, not a 7th stage.
+export const FORWARD_STAGES = [
+  "order_received",
+  "order_picked_up",
+  "processing",
+  "in_transit",
+  "out_for_delivery",
+  "delivered",
+] as const satisfies readonly OrderStatus[];
+
+export const ROUTE_STAGE_LABELS: Record<(typeof FORWARD_STAGES)[number], string> = {
+  order_received: "Received",
+  order_picked_up: "Picked Up",
+  processing: "Processing",
+  in_transit: "In Transit",
+  out_for_delivery: "Out for Delivery",
+  delivered: "Delivered",
 };
 
 export function formatDestination(order: {
@@ -38,4 +58,14 @@ export function formatDestination(order: {
     : cityState;
   const withCountry = `${withZip}, ${order.destination_country}`;
   return order.destination_street ? `${order.destination_street}, ${withCountry}` : withCountry;
+}
+
+export function formatDateTime(iso: string) {
+  return new Date(iso).toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
 }

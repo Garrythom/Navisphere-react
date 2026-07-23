@@ -20,7 +20,7 @@ export const STATUS_META: Record<
   in_transit: { label: "Shipped / In Transit", color: "#3B82F6", icon: Truck },
   out_for_delivery: { label: "Out for Delivery", color: "#6366F1", icon: MapPin },
   delivered: { label: "Delivered", color: "#10B981", icon: CheckCircle2 },
-  delayed: { label: "Delayed / Issue", color: "#EF4444", icon: AlertTriangle },
+  delayed: { label: "On Hold / Delayed", color: "#EF4444", icon: AlertTriangle },
 };
 
 export const STATUS_OPTIONS: { value: OrderStatus; label: string }[] = (
