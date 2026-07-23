@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Check, Copy, Plus } from "lucide-react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { Check, Copy, Plus, AlertTriangle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -21,6 +21,8 @@ function nowForInput() {
 
 export function OrderDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const routerLocation = useLocation();
+  const itemsError = (routerLocation.state as { itemsError?: string } | null)?.itemsError;
   const [order, setOrder] = useState<Order | null>(null);
   const [items, setItems] = useState<OrderItem[]>([]);
   const [updates, setUpdates] = useState<TrackingUpdate[]>([]);
@@ -102,6 +104,13 @@ export function OrderDetailPage() {
 
   return (
     <>
+      {itemsError && (
+        <div className="card mb-6 flex items-start gap-3 border-status-delayed/30 bg-status-delayed/5">
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-status-delayed" />
+          <p className="text-sm text-navy">{itemsError}</p>
+        </div>
+      )}
+
       <div className="card">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>

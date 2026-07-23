@@ -66,8 +66,9 @@ export function OrderFormPage() {
     setSubmitting(false);
 
     if (itemsError) {
-      setError("Order was created, but adding items failed. You can add them from the order detail page.");
-      navigate(`/orders/${order.id}`);
+      navigate(`/orders/${order.id}`, {
+        state: { itemsError: "Order was created, but its items failed to save. Contact support to add them." },
+      });
       return;
     }
 
