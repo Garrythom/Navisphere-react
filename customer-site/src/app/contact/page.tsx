@@ -46,7 +46,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <WhatsappIcon className="mt-0.5 h-5 w-5 text-[#25D366]" />
+                <WhatsappIcon className="mt-0.5 h-5 w-5 text-accent" />
                 <div>
                   <p className="text-sm font-medium text-navy">WhatsApp</p>
                   <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent">

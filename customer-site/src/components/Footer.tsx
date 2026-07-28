@@ -66,7 +66,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-2 hover:text-accent"
                 >
-                  <WhatsappIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
+                  <WhatsappIcon className="mt-0.5 h-4 w-4 shrink-0" />
                   {SUPPORT_PHONE} <span className="text-slate-500">(WhatsApp)</span>
                 </a>
               </li>
