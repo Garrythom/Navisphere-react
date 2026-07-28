@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const SUPPORT_EMAIL = "support@navispherelogistics.com";
-const SUPPORT_PHONE = "+1 (800) 555-0142";
+const SUPPORT_PHONE = "+1 (214) 384-2063";
 const SUPPORT_ADDRESS = "4210 Harbor Gateway Blvd, Long Beach, CA 90802";
 
 export default function ContactPage() {
