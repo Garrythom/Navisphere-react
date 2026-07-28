@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
+import { WhatsappIcon } from "@/components/SocialIcons";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 const SUPPORT_EMAIL = "support@navispherelogistics.com";
 const SUPPORT_PHONE = "+1 (214) 384-2063";
 const SUPPORT_ADDRESS = "4210 Harbor Gateway Blvd, Long Beach, CA 90802";
+const WHATSAPP_LINK = `https://wa.me/${SUPPORT_PHONE.replace(/\D/g, "")}`;
 
 export default function ContactPage() {
   return (
@@ -44,10 +46,12 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-5 w-5 text-accent" />
+                <WhatsappIcon className="mt-0.5 h-5 w-5 text-[#25D366]" />
                 <div>
-                  <p className="text-sm font-medium text-navy">Phone</p>
-                  <p className="text-sm text-muted">{SUPPORT_PHONE}</p>
+                  <p className="text-sm font-medium text-navy">WhatsApp</p>
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent">
+                    {SUPPORT_PHONE}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">

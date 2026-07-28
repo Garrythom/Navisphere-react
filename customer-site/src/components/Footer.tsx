@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
-import { LinkedinIcon, XIcon, FacebookIcon } from "./SocialIcons";
+import { Mail, MapPin } from "lucide-react";
+import { WhatsappIcon } from "./SocialIcons";
 
 const QUICK_LINKS = [
   { href: "/", label: "Home" },
@@ -14,6 +14,7 @@ const QUICK_LINKS = [
 const SUPPORT_EMAIL = "support@navispherelogistics.com";
 const SUPPORT_PHONE = "+1 (214) 384-2063";
 const SUPPORT_ADDRESS = "4210 Harbor Gateway Blvd, Long Beach, CA 90802";
+const WHATSAPP_LINK = `https://wa.me/${SUPPORT_PHONE.replace(/\D/g, "")}`;
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -59,23 +60,20 @@ export default function Footer() {
                 <Mail className="mt-0.5 h-4 w-4 shrink-0" /> {SUPPORT_EMAIL}
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0" /> {SUPPORT_PHONE}
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2 hover:text-accent"
+                >
+                  <WhatsappIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
+                  {SUPPORT_PHONE} <span className="text-slate-500">(WhatsApp)</span>
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" /> {SUPPORT_ADDRESS}
               </li>
             </ul>
-            <div className="mt-4 flex gap-3">
-              <a href="#" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 hover:border-accent hover:text-accent">
-                <LinkedinIcon className="h-4 w-4" />
-              </a>
-              <a href="#" aria-label="X (Twitter)" className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 hover:border-accent hover:text-accent">
-                <XIcon className="h-4 w-4" />
-              </a>
-              <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 hover:border-accent hover:text-accent">
-                <FacebookIcon className="h-4 w-4" />
-              </a>
-            </div>
           </div>
         </div>
 
