@@ -5,7 +5,7 @@ shared Supabase project. Customers track shipments and submit inquiries on a
 public site; staff manage orders and status updates from a separate admin
 dashboard.
 
-**Live:** [navispherelogistics.com](https://navispherelogistics.com) · Admin dashboard is staff-only (Supabase Auth login)
+**Live:** [navispherelogistics.com](https://navispherelogistics.com) · Admin dashboard is staff-only
 
 ## Stack
 
@@ -29,7 +29,7 @@ dashboard.
 - Per-IP rate limiting on the tracking lookup, implemented in `proxy.ts`
 
 **`admin-dashboard`** — staff-only order management:
-- Supabase Auth login (any authenticated user is treated as staff — no public
+- Any authenticated user is treated as staff — no public
   signup)
 - Overview stats, searchable/filterable/paginated order list
 - Create orders with line items, add/edit/delete tracking status updates
