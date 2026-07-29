@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { WhatsappIcon } from "./SocialIcons";
 
 const QUICK_LINKS = [
@@ -11,9 +11,6 @@ const QUICK_LINKS = [
   { href: "/contact", label: "Contact Us" },
 ];
 
-// TODO: switch back to support@navispherelogistics.com once Saifmail's DNS
-// has propagated and that mailbox is confirmed receiving mail.
-const SUPPORT_EMAIL = "support.navispherelogistics@gmail.com";
 const SUPPORT_PHONE = "+1 (214) 384-2063";
 const SUPPORT_ADDRESS = "4210 Harbor Gateway Blvd, Long Beach, CA 90802";
 const WHATSAPP_LINK = `https://wa.me/${SUPPORT_PHONE.replace(/\D/g, "")}`;
@@ -58,9 +55,6 @@ export default function Footer() {
               Contact
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-slate-400">
-              <li className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0" /> {SUPPORT_EMAIL}
-              </li>
               <li className="flex items-start gap-2">
                 <a
                   href={WHATSAPP_LINK}

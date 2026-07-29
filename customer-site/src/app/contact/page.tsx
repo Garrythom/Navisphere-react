@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Mail, MapPin, Clock } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import { WhatsappIcon } from "@/components/SocialIcons";
 import ContactForm from "@/components/ContactForm";
 
@@ -9,9 +9,6 @@ export const metadata: Metadata = {
   description: "Get in touch with Navisphere Logistics — questions about an order, a quote, or general support.",
 };
 
-// TODO: switch back to support@navispherelogistics.com once Saifmail's DNS
-// has propagated and that mailbox is confirmed receiving mail.
-const SUPPORT_EMAIL = "support.navispherelogistics@gmail.com";
 const SUPPORT_PHONE = "+1 (214) 384-2063";
 const SUPPORT_ADDRESS = "4210 Harbor Gateway Blvd, Long Beach, CA 90802";
 const WHATSAPP_LINK = `https://wa.me/${SUPPORT_PHONE.replace(/\D/g, "")}`;
@@ -40,13 +37,6 @@ export default function ContactPage() {
 
           <div className="lg:col-span-2">
             <div className="card space-y-5">
-              <div className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-5 w-5 text-accent" />
-                <div>
-                  <p className="text-sm font-medium text-navy">Email</p>
-                  <p className="text-sm text-muted">{SUPPORT_EMAIL}</p>
-                </div>
-              </div>
               <div className="flex items-start gap-3">
                 <WhatsappIcon className="mt-0.5 h-5 w-5 text-accent" />
                 <div>
