@@ -11,7 +11,9 @@ const QUICK_LINKS = [
   { href: "/contact", label: "Contact Us" },
 ];
 
-const SUPPORT_EMAIL = "support@navispherelogistics.com";
+// TODO: switch back to support@navispherelogistics.com once Saifmail's DNS
+// has propagated and that mailbox is confirmed receiving mail.
+const SUPPORT_EMAIL = "support.navispherelogistics@gmail.com";
 const SUPPORT_PHONE = "+1 (214) 384-2063";
 const SUPPORT_ADDRESS = "4210 Harbor Gateway Blvd, Long Beach, CA 90802";
 const WHATSAPP_LINK = `https://wa.me/${SUPPORT_PHONE.replace(/\D/g, "")}`;
