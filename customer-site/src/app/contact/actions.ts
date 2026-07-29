@@ -8,7 +8,9 @@ export type ContactFormState = {
   error?: string;
 };
 
-const NOTIFICATION_TO = "support@navispherelogistics.com";
+// TODO: switch back to support@navispherelogistics.com once Saifmail's DNS
+// has propagated and that mailbox is confirmed receiving mail.
+const NOTIFICATION_TO = "support.navispherelogistics@gmail.com";
 const NOTIFICATION_FROM = "Navisphere Website <notifications@navispherelogistics.com>";
 
 export async function submitContactMessage(
